@@ -5,6 +5,9 @@ knitr::opts_chunk$set(
 )
 
 ## ----install, eval=FALSE------------------------------------------------------
+#  install.packages("devtools")
+
+## ----install_gh, eval=FALSE---------------------------------------------------
 #  devtools::install_github("tgve/tgver")
 
 ## ----version------------------------------------------------------------------

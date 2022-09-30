@@ -1,5 +1,6 @@
 [![tic](https://github.com/tgve/tgver/actions/workflows/tic.yml/badge.svg)](https://github.com/tgve/tgver/actions/workflows/tic.yml)
 [![codecov](https://codecov.io/gh/tgve/tgver/branch/master/graph/badge.svg?token=WAR82Q7597)](https://app.codecov.io/gh/tgve/tgver)
+[![CRAN status](https://www.r-pkg.org/badges/version/tgver)](https://CRAN.R-project.org/package=tgver)
 
 This is the R package for the TGVE front end `npm` package
 [`tgve`](https://www.npmjs.com/package/@tgve/tgvejs). The R package is
@@ -10,17 +11,17 @@ production.
 
 ## Install
 
-`tgver` is not yet available on CRAN. For now please use
-devtools:
+Install `tgver` from CRAN
 
-``` r
-# install.packages("devtools")
-devtools::install_github("tgve/tgver")
+```r
+install.packages("tgver")
 ```
+
+You can use the latest from GitHub using `devtools::install_github("tgve/tgver")`
 
 ## Use
 
-Overall, as of this pre-CRAN release, the package takes advantage of how
+Overall, the package takes advantage of how
 TGVE can be used (see
 [npm package](https://github.com/tgve/tgvejs) for documentation) and
 provides options to R users.

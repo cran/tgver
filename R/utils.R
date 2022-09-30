@@ -15,6 +15,7 @@ openURL = function(url = NULL,
                    browser = FALSE,
                    path = "",
                    protocol = "http://") {
+  if(!interactive()) return()
   # TODO: there must be better ways of doing this
   u = paste0(protocol, host,":", port, "/", path)
   if(!is.null(url) && is.character(url) && length(url) == 1) {
@@ -57,6 +58,8 @@ copy_tgve = function(path, over.write = TRUE) {
   if(!inst.copied)
     stop(m)
   utils::unzip(f, exdir = path)
+  # keep copy of original index.html
+  file.copy(file.path(d, "index.html"), file.path(d, "index.original"))
   # there is now path/tgve
   unzipped = list.files(d, pattern = "*.js|*html")
   if(length(unzipped) < 1)
@@ -152,8 +155,9 @@ is_valid_url = function(string) {
 #' @examples {
 #' url = get_url(dark="false")
 #' url == "http://127.0.0.1:8000?dark=false"
+#' url
 #' url = get_url()
-#' url == "http://127.0.0.1:8000"
+#' url
 #' }
 #'
 #' @export
@@ -173,4 +177,8 @@ get_url = function(base = "http://127.0.0.1:8000", ...) {
     }
   }
   new.url
+}
+
+isSingleString = function(input) {
+  is.character(input) & length(input) == 1
 }

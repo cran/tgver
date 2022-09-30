@@ -3,13 +3,12 @@
 #' @note This was generated using the script in the
 #' `data` directory (`tgver.R` file).
 #'
-#' @examples
-#' \donttest{
+#' @examples {
 #' tgver::version
 #' }
 #' @docType data
 #' @keywords version
-#' @name accidents_sample
+#' @name version
 #' @aliases tgvejsVersion
 #' @format A character vector
 NULL

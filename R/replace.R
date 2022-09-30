@@ -1,11 +1,13 @@
 #' Function to replace patterns in given files.
 #'
-#'@param files where pattern to be replaced.
-#'@param pattern the pattern to replace using `gsub`.
-#'@param replacement the string to replace pattern with using `gsub`.
+#'@param files character vector of full paths where pattern to be replaced.
+#'@param pattern character pattern to replace using `gsub`.
+#'@param replacement character to replace pattern with using `gsub`.
 file_replace = function(files = NULL, pattern, replacement) {
   if(any(!file.exists(files)))
     stop("a given file path does not exist")
+  if(!isSingleString(pattern) | !isSingleString(replacement))
+    stop("'pattern' and 'replacement' must be single character values.")
   for(fname in files){
     content = readLines(fname, warn = FALSE)
     # g = grep(pattern, content)
@@ -25,7 +27,7 @@ list_api_files = function(path = NULL) {
     stop("valid tgve instance path is required.")
   # main.*.chunk.js*
   files = list.files(file.path(path, "static/js"),
-                     pattern = "^main*",
+                     pattern = "^main.*\\.js$",
                      full.names = TRUE)
   if(length(files) == 0)
     stop("could not find ^main* files in path.")

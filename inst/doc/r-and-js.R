@@ -58,7 +58,7 @@ ggplot() +
 
 ## ----tgve1, out.width='100%'--------------------------------------------------
 library(tgver)
-p = tempdir()
+p = getwd() # for reproducibilty this needs to be a persistent location
 tp = file.path(p, "tgve")
 unlink(tp, recursive = TRUE)
 # some random line width
@@ -66,15 +66,8 @@ unlink(tp, recursive = TRUE)
 run_tgve = function(layerName="line") {
   setup(p)
   sf = st_as_sf(sfc)
-  ps = explore_sf(sf, background = TRUE)
-  # data is at "http://127.0.0.1:8000/explore_sf"
-  base.url = "http://127.0.0.1:8000"
-  url = get_url(base.url, defaultURL = "http://127.0.0.1:8000/explore_sf",
-             hideChartGenerator="true",
-             viewport="{zoom:3,pitch:0,bearing:0}",
-             layerName=layerName)
-  knitr::include_url(url)
-  # ps$kill()
+  p = explore_sf(sf, static = TRUE, path = tp)
+  knitr::include_url(file.path(p, "index.html"))
 }
 
 img_or_warning = function(img.url) {
@@ -104,6 +97,10 @@ if(!is.actions) {
 } else {
   img_or_warning("https://user-images.githubusercontent.com/408568/144713110-245cf94e-826d-4525-bc48-ac7c97220c71.png")
 }
+
+## ---- eval=FALSE--------------------------------------------------------------
+#  unlink(file.path(getwd(), "tgve"), recursive = TRUE)
+#  unlink(file.path(getwd(), "edge-tgve"), recursive = TRUE)
 
 ## ---- data-prep2, eval=FALSE--------------------------------------------------
 #  dir = file.path(tempdir(), "cdrc")
